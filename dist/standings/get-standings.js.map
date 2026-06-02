@@ -1,0 +1,1 @@
+{"version":3,"file":"get-standings.js","sourceRoot":"","sources":["../../standings/get-standings.ts"],"names":[],"mappings":"AAAA,6BAA6B;AAE7B,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,YAAY,IAAI,IAAI,EAAE,MAAM,iBAAiB,CAAC;AAKvD,MAAM,CAAC,KAAK,UAAU,YAAY;IAC9B,OAAO,oBAAoB,CAAoB,GAAG,IAAI,gBAAgB,CAAC,CAAC;AAC5E,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"get-game-story.js","sourceRoot":"","sources":["../../game/get-game-story.ts"],"names":[],"mappings":"AAAA,yBAAyB;AAEzB,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,YAAY,IAAI,IAAI,EAAE,MAAM,iBAAiB,CAAC;AA2LvD,MAAM,CAAC,KAAK,UAAU,YAAY,CAAC,MAAc;IAC7C,OAAO,oBAAoB,CAA0B,GAAG,IAAI,mBAAmB,MAAM,EAAE,CAAC,CAAC;AAC7F,CAAC"}

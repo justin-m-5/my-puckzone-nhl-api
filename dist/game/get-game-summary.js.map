@@ -1,0 +1,1 @@
+{"version":3,"file":"get-game-summary.js","sourceRoot":"","sources":["../../game/get-game-summary.ts"],"names":[],"mappings":"AAAA,2BAA2B;AAE3B,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,YAAY,IAAI,IAAI,EAAE,MAAM,iBAAiB,CAAC;AAoFvD,MAAM,CAAC,KAAK,UAAU,cAAc,CAAC,MAAc;IAC/C,OAAO,oBAAoB,CAA2B,GAAG,IAAI,eAAe,MAAM,UAAU,CAAC,CAAC;AAClG,CAAC"}

@@ -29,6 +29,10 @@ function callReport<T>(p: TeamStatsReportParams, report: string): Promise<StatsA
     });
 }
 
+export interface FetchTeamAdvancedStatsParams extends TeamStatsReportParams {
+    teamId: number;
+}
+
 export interface TeamSummaryRow {
     teamId: number;
     teamFullName: string;
@@ -473,54 +477,112 @@ export interface TeamGoalGamesRow {
 export async function fetchTeamSummary(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamSummaryRow>> {
     return callReport<TeamSummaryRow>(p, "summary");
 }
+
 export async function fetchTeamPercentages(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamPercentagesRow>> {
     return callReport<TeamPercentagesRow>(p, "percentages");
 }
+
 export async function fetchTeamRealtime(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamRealtimeRow>> {
     return callReport<TeamRealtimeRow>(p, "realtime");
 }
+
 export async function fetchTeamFaceoff(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamFaceoffRow>> {
     return callReport<TeamFaceoffRow>(p, "faceoffpercentages");
 }
+
 export async function fetchTeamPowerPlay(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamPowerPlayRow>> {
     return callReport<TeamPowerPlayRow>(p, "powerplay");
 }
+
 export async function fetchTeamPenaltyKill(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamPenaltyKillRow>> {
     return callReport<TeamPenaltyKillRow>(p, "penaltykill");
 }
+
 export async function fetchTeamScoring(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamScoringRow>> {
     return callReport<TeamScoringRow>(p, "goalsbyperiod");
 }
+
 export async function fetchTeamShotType(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamShotTypeRow>> {
     return callReport<TeamShotTypeRow>(p, "shottype");
 }
+
 export async function fetchTeamGoalsForByStrength(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamGoalsForByStrengthRow>> {
     return callReport<TeamGoalsForByStrengthRow>(p, "goalsforbystrength");
 }
+
 export async function fetchTeamGoalsAgainstByStrength(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamGoalsAgainstByStrengthRow>> {
     return callReport<TeamGoalsAgainstByStrengthRow>(p, "goalsagainstbystrength");
 }
+
 export async function fetchTeamDaysBetweenGames(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamDaysBetweenGamesRow>> {
     return callReport<TeamDaysBetweenGamesRow>(p, "daysbetweengames");
 }
+
 export async function fetchTeamLeadingTrailing(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamLeadingTrailingRow>> {
     return callReport<TeamLeadingTrailingRow>(p, "leadingtrailing");
 }
+
 export async function fetchTeamOutshootOutshotBy(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamOutshootOutshotByRow>> {
     return callReport<TeamOutshootOutshotByRow>(p, "outshootoutshotby");
 }
+
 export async function fetchTeamPenalties(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamPenaltiesRow>> {
     return callReport<TeamPenaltiesRow>(p, "penalties");
 }
+
 export async function fetchTeamSummaryShooting(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamSummaryShootingRow>> {
     return callReport<TeamSummaryShootingRow>(p, "summaryshooting");
 }
+
 export async function fetchTeamSavePercentage(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamSavePercentageRow>> {
     return callReport<TeamSavePercentageRow>(p, "savePercentage");
 }
+
 export async function fetchTeamScoreTrailFirst(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamScoreTrailFirstRow>> {
     return callReport<TeamScoreTrailFirstRow>(p, "scoretrailfirst");
 }
+
 export async function fetchTeamGoalGames(p: TeamStatsReportParams): Promise<StatsApiResponse<TeamGoalGamesRow>> {
     return callReport<TeamGoalGamesRow>(p, "goalgames");
 }
+
+export async function fetchTeamAdvancedStats(p: FetchTeamAdvancedStatsParams) {
+    const [percentages, realtime, faceoff] = await Promise.all([
+        fetchTeamPercentages(p).then(r => r.data[0] ?? null).catch(() => null),
+        fetchTeamRealtime(p).then(r => r.data[0] ?? null).catch(() => null),
+        fetchTeamFaceoff(p).then(r => r.data[0] ?? null).catch(() => null),
+    ]);
+    return { percentages, realtime, faceoff };
+}
+
+export async function fetchAllTeamStatsReports(p: TeamStatsReportParams) {
+    const [summary, percentages, realtime, faceoff, powerplay, penaltykill, scoring, shottype,
+        goalsForByStrength, goalsAgainstByStrength, daysBetweenGames, leadingTrailing, outshootOutshotBy,
+        penalties, summaryShooting, savePercentage, scoreTrailFirst, goalGames,
+    ] = await Promise.all([
+        fetchTeamSummary(p).then(r => r.data).catch(() => [] as TeamSummaryRow[]),
+        fetchTeamPercentages(p).then(r => r.data).catch(() => [] as TeamPercentagesRow[]),
+        fetchTeamRealtime(p).then(r => r.data).catch(() => [] as TeamRealtimeRow[]),
+        fetchTeamFaceoff(p).then(r => r.data).catch(() => [] as TeamFaceoffRow[]),
+        fetchTeamPowerPlay(p).then(r => r.data).catch(() => [] as TeamPowerPlayRow[]),
+        fetchTeamPenaltyKill(p).then(r => r.data).catch(() => [] as TeamPenaltyKillRow[]),
+        fetchTeamScoring(p).then(r => r.data).catch(() => [] as TeamScoringRow[]),
+        fetchTeamShotType(p).then(r => r.data).catch(() => [] as TeamShotTypeRow[]),
+        fetchTeamGoalsForByStrength(p).then(r => r.data).catch(() => [] as TeamGoalsForByStrengthRow[]),
+        fetchTeamGoalsAgainstByStrength(p).then(r => r.data).catch(() => [] as TeamGoalsAgainstByStrengthRow[]),
+        fetchTeamDaysBetweenGames(p).then(r => r.data).catch(() => [] as TeamDaysBetweenGamesRow[]),
+        fetchTeamLeadingTrailing(p).then(r => r.data).catch(() => [] as TeamLeadingTrailingRow[]),
+        fetchTeamOutshootOutshotBy(p).then(r => r.data).catch(() => [] as TeamOutshootOutshotByRow[]),
+        fetchTeamPenalties(p).then(r => r.data).catch(() => [] as TeamPenaltiesRow[]),
+        fetchTeamSummaryShooting(p).then(r => r.data).catch(() => [] as TeamSummaryShootingRow[]),
+        fetchTeamSavePercentage(p).then(r => r.data).catch(() => [] as TeamSavePercentageRow[]),
+        fetchTeamScoreTrailFirst(p).then(r => r.data).catch(() => [] as TeamScoreTrailFirstRow[]),
+        fetchTeamGoalGames(p).then(r => r.data).catch(() => [] as TeamGoalGamesRow[]),
+    ]);
+    return {
+        summary, percentages, realtime, faceoff, powerplay, penaltykill, scoring, shottype,
+        goalsForByStrength, goalsAgainstByStrength, daysBetweenGames, leadingTrailing,
+        outshootOutshotBy, penalties, summaryShooting, savePercentage, scoreTrailFirst, goalGames,
+    };
+}
+

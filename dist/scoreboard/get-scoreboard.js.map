@@ -1,0 +1,1 @@
+{"version":3,"file":"get-scoreboard.js","sourceRoot":"","sources":["../../scoreboard/get-scoreboard.ts"],"names":[],"mappings":"AAAA,+BAA+B;AAE/B,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,YAAY,IAAI,IAAI,EAAE,MAAM,iBAAiB,CAAC;AAsFvD,MAAM,CAAC,KAAK,UAAU,aAAa,CAAC,IAAY;IAC5C,OAAO,oBAAoB,CAA2B,GAAG,IAAI,UAAU,IAAI,EAAE,CAAC,CAAC;AACnF,CAAC"}

@@ -1,0 +1,81 @@
+import type { GameClock, GoalAssist, LocalizedName, NHLApiGameTeam, PeriodDescriptor, PeriodPenalties, TvBroadcast } from "../shared.js";
+export type Goal = {
+    situationCode: string;
+    eventId: number;
+    strength: "ev" | "pp" | "sh";
+    playerId: number;
+    firstName: LocalizedName;
+    lastName: LocalizedName;
+    name: LocalizedName;
+    teamAbbrev: LocalizedName;
+    headshot: string;
+    highlightClipSharingUrl?: string;
+    highlightClipSharingUrlFr?: string;
+    highlightClip?: number;
+    highlightClipFr?: number;
+    discreteClip?: number;
+    discreteClipFr?: number;
+    goalsToDate: number;
+    awayScore: number;
+    homeScore: number;
+    leadingTeamAbbrev?: LocalizedName;
+    timeInPeriod: string;
+    shotType?: string;
+    goalModifier: string;
+    assists: GoalAssist[];
+    pptReplayUrl?: string;
+    homeTeamDefendingSide?: string;
+    isHome: boolean;
+};
+export type PeriodScoring = {
+    periodDescriptor?: PeriodDescriptor;
+    goals: Goal[];
+};
+export type ThreeStar = {
+    star: 1 | 2 | 3;
+    playerId: number;
+    teamAbbrev: string;
+    headshot: string;
+    name: LocalizedName;
+    sweaterNo: number;
+    position: string;
+    goals?: number;
+    assists?: number;
+    points?: number;
+    goalsAgainstAverage?: number;
+    savePctg?: number;
+};
+export type GameSummarySection = {
+    scoring: PeriodScoring[];
+    threeStars: ThreeStar[];
+    penalties: PeriodPenalties[];
+};
+export type NHLApiGameSummaryLanding = {
+    id: number;
+    season: number;
+    gameType: number;
+    limitedScoring: boolean;
+    gameDate: string;
+    venue: LocalizedName;
+    venueLocation: LocalizedName & {
+        fr?: string;
+    };
+    startTimeUTC: string;
+    easternUTCOffset: string;
+    venueUTCOffset: string;
+    venueTimezone: string;
+    periodDescriptor: PeriodDescriptor;
+    tvBroadcasts: TvBroadcast[];
+    gameState: string;
+    gameScheduleState: string;
+    awayTeam: NHLApiGameTeam;
+    homeTeam: NHLApiGameTeam;
+    shootoutInUse: boolean;
+    regPeriods: number;
+    otInUse: boolean;
+    tiesInUse: boolean;
+    summary: GameSummarySection;
+    clock: GameClock;
+};
+export declare function getGameSummary(gameId: number): Promise<NHLApiGameSummaryLanding>;
+//# sourceMappingURL=get-game-summary.d.ts.map

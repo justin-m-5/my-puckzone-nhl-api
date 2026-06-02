@@ -78,6 +78,7 @@ export interface RawTeamInfo {
     commonName?: { default?: string };
     score?: number;
     logo?: string;
+    sog?: number;
 }
 
 export interface RawGame {

@@ -1,0 +1,1 @@
+{"version":3,"file":"get-playoff-bracket.js","sourceRoot":"","sources":["../../playoffs/get-playoff-bracket.ts"],"names":[],"mappings":"AAAA,kCAAkC;AAElC,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,YAAY,IAAI,IAAI,EAAE,MAAM,iBAAiB,CAAC;AAKvD,MAAM,CAAC,KAAK,UAAU,iBAAiB,CAAC,IAAY;IAChD,OAAO,oBAAoB,CAAyB,GAAG,IAAI,oBAAoB,IAAI,EAAE,CAAC,CAAC;AAC3F,CAAC"}

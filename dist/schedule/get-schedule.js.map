@@ -1,0 +1,1 @@
+{"version":3,"file":"get-schedule.js","sourceRoot":"","sources":["../../schedule/get-schedule.ts"],"names":[],"mappings":"AAAA,2BAA2B;AAE3B,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,YAAY,IAAI,IAAI,EAAE,MAAM,iBAAiB,CAAC;AAOvD,MAAM,CAAC,KAAK,UAAU,WAAW,CAAC,IAAY;IAC1C,OAAO,oBAAoB,CAAmB,GAAG,IAAI,aAAa,IAAI,EAAE,CAAC,CAAC;AAC9E,CAAC"}

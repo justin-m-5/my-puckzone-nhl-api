@@ -280,3 +280,16 @@ export async function fetchGoalieStartedVsRelieved(p: GoalieStatsReportParams): 
 export async function fetchGoalieTimeOnIce(p: GoalieStatsReportParams): Promise<StatsApiResponse<GoalieTimeOnIceRow>> {
     return callReport<GoalieTimeOnIceRow>(p, "timeonice");
 }
+export async function fetchAllGoalieStatsReports(p: GoalieStatsReportParams) {
+    const [summary, advanced, daysRest, penaltyShots, savesByStrength, shootout, startedVsRelieved, toi] = await Promise.all([
+        fetchGoalieSummary(p).then(r => r.data).catch(() => [] as GoalieSummaryRow[]),
+        fetchGoalieAdvancedStats(p).then(r => r.data).catch(() => [] as GoalieAdvancedRow[]),
+        fetchGoalieDaysRest(p).then(r => r.data).catch(() => [] as GoalieDaysRestRow[]),
+        fetchGoaliePenaltyShots(p).then(r => r.data).catch(() => [] as GoaliePenaltyShotsRow[]),
+        fetchGoalieSavesByStrength(p).then(r => r.data).catch(() => [] as GoalieSavesByStrengthRow[]),
+        fetchGoalieShootout(p).then(r => r.data).catch(() => [] as GoalieShootoutRow[]),
+        fetchGoalieStartedVsRelieved(p).then(r => r.data).catch(() => [] as GoalieStartedVsRelievedRow[]),
+        fetchGoalieTimeOnIce(p).then(r => r.data).catch(() => [] as GoalieTimeOnIceRow[]),
+    ]);
+    return { summary, advanced, daysRest, penaltyShots, savesByStrength, shootout, startedVsRelieved, toi };
+}

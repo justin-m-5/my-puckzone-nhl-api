@@ -1,0 +1,1 @@
+{"version":3,"file":"get-boxscore.js","sourceRoot":"","sources":["../../game/get-boxscore.ts"],"names":[],"mappings":"AAAA,uBAAuB;AAEvB,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,YAAY,IAAI,IAAI,EAAE,MAAM,iBAAiB,CAAC;AAkFvD,MAAM,CAAC,KAAK,UAAU,WAAW,CAAC,MAAc;IAC5C,OAAO,oBAAoB,CAAyB,GAAG,IAAI,eAAe,MAAM,WAAW,CAAC,CAAC;AACjG,CAAC"}

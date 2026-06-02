@@ -365,3 +365,25 @@ export async function fetchSkaterShotTypeStats(p: SkaterStatsReportParams): Prom
 export async function fetchSkaterPercentages(p: SkaterStatsReportParams): Promise<StatsApiResponse<SkaterPercentagesRow>> {
     return callReport<SkaterPercentagesRow>(p, "percentages");
 }
+
+export async function fetchSkaterAdvancedStats(p: SkaterStatsReportParams) {
+    const [realtime, toi] = await Promise.all([
+        fetchSkaterRealtimeStats(p).then(r => r.data).catch(() => [] as SkaterRealtimeRow[]),
+        fetchSkaterTimeOnIceStats(p).then(r => r.data).catch(() => [] as SkaterTimeOnIceRow[]),
+    ]);
+    return { realtime, toi };
+}
+
+export async function fetchAllSkaterStatsReports(p: SkaterStatsReportParams) {
+    const [{ realtime, toi }, faceoff, penalty, powerplay, penaltykill, rates, shottype, percentages] = await Promise.all([
+        fetchSkaterAdvancedStats(p).catch(() => ({ realtime: [] as SkaterRealtimeRow[], toi: [] as SkaterTimeOnIceRow[] })),
+        fetchSkaterFaceoffStats(p).then(r => r.data).catch(() => [] as SkaterFaceoffRow[]),
+        fetchSkaterPenaltyStats(p).then(r => r.data).catch(() => [] as SkaterPenaltyRow[]),
+        fetchSkaterPowerPlayStats(p).then(r => r.data).catch(() => [] as SkaterPowerPlayRow[]),
+        fetchSkaterPenaltyKillStats(p).then(r => r.data).catch(() => [] as SkaterPenaltyKillRow[]),
+        fetchSkaterScoringRates(p).then(r => r.data).catch(() => [] as SkaterScoringRatesRow[]),
+        fetchSkaterShotTypeStats(p).then(r => r.data).catch(() => [] as SkaterShotTypeRow[]),
+        fetchSkaterPercentages(p).then(r => r.data).catch(() => [] as SkaterPercentagesRow[]),
+    ]);
+    return { realtime, toi, faceoff, penalty, powerplay, penaltykill, rates, shottype, percentages };
+}

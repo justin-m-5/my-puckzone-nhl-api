@@ -1,0 +1,1 @@
+{"version":3,"file":"get-teams-list.js","sourceRoot":"","sources":["../../teams/get-teams-list.ts"],"names":[],"mappings":"AAAA,0BAA0B;AAC1B,OAAO,EAAE,oBAAoB,EAAE,MAAM,cAAc,CAAC;AACpD,OAAO,EAAE,cAAc,EAAE,MAAM,iBAAiB,CAAC;AAYjD,MAAM,CAAC,KAAK,UAAU,kBAAkB;IACpC,OAAO,oBAAoB,CAAyB,GAAG,cAAc,OAAO,CAAC,CAAC;AAClF,CAAC"}
